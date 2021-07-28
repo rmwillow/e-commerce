@@ -35,7 +35,9 @@ Product.init(
         // this is the equivalent of SQL's `NOT NULL` option
         allowNull: false,
         // instruct that this is the Primary Key
-        isDecimal: true
+        validate: {
+          isDecimal: true
+        }
       },
     
       // define an STOCK column
@@ -47,12 +49,19 @@ Product.init(
         // instruct that this is the Primary Key
         defaultValue: "10",
         // validates numeric value
-        isNumeric: true,
-        references: {
-          model: 'category',
-          key: 'id'
+        validate: {
+          isNumeric: true
         }
       },
+       // define category_id column
+    category_id: {
+      type: DataTypes.INTEGER,
+      // references the category model's id 
+      references: {
+        model: 'category',
+        key: 'id'
+      }
+    },
   },
   {
     sequelize,
