@@ -6,15 +6,25 @@ const ProductTag = require('./ProductTag');
 const User = require('./User');
 
 // Products belongsTo Category
-Product.belongsTo(Category);
+Product.belongsTo(Category, {
+  foreignKey: 'id'
+});
 // Categories have many Products
-Category.hasMany(Product);
+Category.hasMany(Product, {
+  foreignKey: 'id'
+});
 
 // Products belongToMany Tags (through ProductTag)
-Product.belongsToMany(ProductTag, {through: "ProductTag"});
+Product.belongsToMany(ProductTag, {
+  through: ProductTag,
+  foreignKey: 'id'
+});
 
 // Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(ProductTag, {through: "ProductTag"});
+Tag.belongsToMany(ProductTag, {
+  through: ProductTag,
+  foreignKey: 'id'
+});
 
 module.exports = {
   Product,
@@ -24,34 +34,3 @@ module.exports = {
   User,
 };
 
-
-
-// //models
-// const Product = sequelize.define("Product", {
-//   name: {
-//     type: DataTypes.INTEGER,
-//     unique: true,
-//   }
-// })
-
-// const Category = sequelize.define("Category", {
-//   name: {
-//     type: DataTypes.INTEGER,
-//     unique: true,
-//   }
-// })
-
-// const Tag = sequelize.define("Tag", {
-//   name: {
-//     type: DataTypes.INTEGER,
-//     unique: true,
-//   }
-// })
-
-
-// const ProductTag = sequelize.define("ProductTag", {
-//   name: {
-//     type: DataTypes.INTEGER,
-//     unique: true,
-//   }
-// })
