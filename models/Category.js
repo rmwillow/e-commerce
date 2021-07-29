@@ -15,7 +15,8 @@ Category.init(
       // instruct that this is the Primary Key
       primaryKey: true,
       // turn on auto increment
-      autoIncrement: true
+      autoIncrement: true,
+      
     },
 
     // define an category_name column
