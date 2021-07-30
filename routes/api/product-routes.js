@@ -137,8 +137,12 @@ router.delete('/:id', (req, res) => {
   Product.destroy({
     where: {
         id: req.params.id
-    }
+    },
+    
+
+
   })
+    .query('SET FOREIGN_KEY_CHECKS = 0', null, options)
     .then(dbProductData => {
         if (!dbProductData) {
             res.status(404).json({ message: 'No product found with this id'});
